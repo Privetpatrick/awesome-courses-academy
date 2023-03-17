@@ -21,7 +21,7 @@
   align-items: center;
 
   & h1 {
-    margin-bottom: 24px;
+    margin: 24px;
   }
 
   & .cards-container {
@@ -62,11 +62,31 @@
 }
 
 @media (width < 700px) {
+  .loader {
+    position: absolute;
+    z-index: 100;
+    top: 20%;
+    left: 33%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../../../assets/loader.gif);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
   .container {
     & .cards-container {
+      width: 90%;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+  }
+
+  .card {
+    margin-left: 0;
   }
 }

@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 
 import Hls from 'hls.js';
-import { Observable, of } from 'rxjs';
 import { IPreviewCourse } from 'src/app/interfaces/preview-course.interface';
 
 @Component({
@@ -18,9 +17,12 @@ import { IPreviewCourse } from 'src/app/interfaces/preview-course.interface';
 export class CourseCardComponent {
   @Input() course!: IPreviewCourse;
   @ViewChild('video') video!: ElementRef;
+  @ViewChild('image') image!: ElementRef;
   @HostListener('mouseover') mouseover(e: Event) {
     if (!this.mouseOver) {
       this.mouseOver = true;
+      if (this.noVideo) return;
+      this.image.nativeElement.style.display = 'none';
       this.createVideo();
     }
     return;
@@ -28,13 +30,13 @@ export class CourseCardComponent {
   @HostListener('mouseleave') mouseleave(e: Event) {
     this.mouseOver = false;
     if (!this.videoElement || this.noVideo) return;
+    this.image.nativeElement.style.display = 'block';
     this.videoElement.pause();
     this.videoElement.src = '';
   }
 
   mouseOver = false;
   noVideo = false;
-  noVideo$: Observable<boolean> = of(false);
 
   videoElement!: HTMLVideoElement;
 
@@ -48,7 +50,7 @@ export class CourseCardComponent {
     hls.on(Hls.Events.ERROR, (event, data) => {
       if (data.type === 'networkError') {
         this.noVideo = true;
-        this.noVideo$ = of(true);
+        this.image.nativeElement.style.display = 'block';
       }
     });
     hls.on(Hls.Events.MANIFEST_PARSED, () => {

@@ -1,8 +1,7 @@
 <div *ngIf="course" class="container" [routerLink]="'/courses/' + course.id">
   <div class="img-container">
-    <img src="{{ course.previewImageLink + '/cover.webp' }}" />
+    <img #image src="{{ course.previewImageLink + '/cover.webp' }}" />
     <video #video class="video"></video>
-    <div *ngIf="noVideo$ | async" class="no-video">No video</div>
   </div>
   <div class="content-container">
     <h4>{{ course.title }}</h4>
