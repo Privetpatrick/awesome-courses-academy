@@ -1,0 +1,114 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & h1 {
+    margin: 24px 24px 24px 64px;
+  }
+
+  & .description {
+    margin-top: 24px;
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+
+  & .lessons-container {
+    align-self: center;
+    width: 50%;
+    margin-top: 64px;
+  }
+}
+
+.video-container {
+  width: 50%;
+  position: relative;
+
+  & h4 {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  & .video {
+    width: 100%;
+  }
+  & .loader {
+    position: absolute;
+    z-index: 100;
+    top: 30%;
+    left: 44%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../../../assets/loader.gif);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  & .no-video {
+    position: absolute;
+    z-index: 100;
+    top: 48%;
+    left: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+}
+
+.back {
+  height: 24px;
+  align-self: flex-start;
+  margin-top: 21px;
+  margin-left: 50px;
+  border: none;
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  text-transform: uppercase;
+  color: #000000;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.back-icon {
+  margin-right: 12px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url(../../../assets/back-icon.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media (width < 700px) {
+  .container {
+    & .lessons-container {
+      width: 90%;
+    }
+    & h1 {
+      font-size: 24px;
+    }
+  }
+
+  .video-container {
+    width: 90%;
+
+    & .loader {
+      top: 26%;
+      left: 32%;
+    }
+
+    & .no-video {
+      left: 38%;
+    }
+  }
+}

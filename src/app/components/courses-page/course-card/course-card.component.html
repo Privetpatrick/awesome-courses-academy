@@ -1,0 +1,22 @@
+<div *ngIf="course" class="container" [routerLink]="'/courses/' + course.id">
+  <div class="img-container">
+    <img src="{{ course.previewImageLink + '/cover.webp' }}" />
+    <video #video class="video"></video>
+  </div>
+  <div class="content-container">
+    <h4>{{ course.title }}</h4>
+
+    <div class="skills">
+      <b>Skills: </b>
+      <span *ngFor="let skill of course.meta.skills; index as i">
+        <span>{{
+          skill + (i + 1 !== course.meta.skills.length ? ", " : ".")
+        }}</span>
+      </span>
+    </div>
+    <div class="meta">
+      <div class="lessons">Lessons: {{ course.lessonsCount }}</div>
+      <div class="rating">Rating: {{ course.rating }}</div>
+    </div>
+  </div>
+</div>

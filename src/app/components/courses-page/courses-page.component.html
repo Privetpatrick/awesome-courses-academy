@@ -1,0 +1,45 @@
+<div *ngIf="!(allCourses$ | async)" class="loader"></div>
+
+<div class="container">
+  <h1>Awesome Courses Academy!</h1>
+  <div *ngIf="pagesCount" class="controls">
+    <button [disabled]="page <= 1" (click)="changePage(page - 1)">
+      Previews
+    </button>
+    <div *ngFor="let item of [].constructor(pagesCount); let i = index">
+      <div
+        (click)="changePage(i + 1)"
+        [ngClass]="page === i + 1 ? 'page-active' : 'page'"
+      >
+        {{ i + 1 }}
+      </div>
+    </div>
+    <button [disabled]="page >= pagesCount" (click)="changePage(page + 1)">
+      Next
+    </button>
+  </div>
+  <div class="cards-container">
+    <div
+      class="card"
+      *ngFor="let course of paginateCourses$ | async; trackBy: identify"
+    >
+      <app-course-card [course]="course"></app-course-card>
+    </div>
+  </div>
+  <div *ngIf="pagesCount" class="controls">
+    <button [disabled]="page <= 1" (click)="changePage(page - 1)">
+      Previews
+    </button>
+    <div *ngFor="let item of [].constructor(pagesCount); let i = index">
+      <div
+        (click)="changePage(i + 1)"
+        [ngClass]="page === i + 1 ? 'page-active' : 'page'"
+      >
+        {{ i + 1 }}
+      </div>
+    </div>
+    <button [disabled]="page >= pagesCount" (click)="changePage(page + 1)">
+      Next
+    </button>
+  </div>
+</div>

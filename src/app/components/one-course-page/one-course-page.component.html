@@ -1,0 +1,35 @@
+<div class="container">
+  <button class="back" routerLink="/characters">
+    <div class="back-icon"></div>
+    <div>Go back</div>
+  </button>
+  <h1>{{ (course$ | async)?.title }}</h1>
+
+  <div class="video-container">
+    <h4 *ngIf="course$ | async">
+      <span>{{ "Lesson " + activeLesson + ": " }}</span
+      ><span>{{ ((course$ | async)?.lessons)![activeLesson - 1].title }}</span>
+    </h4>
+    <video #video class="video"></video>
+    <div *ngIf="!videoURL && !noVideo" class="loader"></div>
+    <div *ngIf="noVideo" class="no-video">No video</div>
+  </div>
+  <article class="description">
+    {{ (course$ | async)?.description }}
+  </article>
+  <div class="lessons-container">
+    <div
+      *ngFor="
+        let lesson of (course$ | async)?.lessons;
+        index as i;
+        trackBy: identify
+      "
+    >
+      <app-lesson
+        [lesson]="lesson"
+        [activeLesson]="activeLesson"
+        (pickLessonSubject)="pickLesson($event)"
+      ></app-lesson>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div
+  (click)="pickLesson(lesson)"
+  *ngIf="lesson.status === 'unlocked'"
+  [ngClass]="lesson.order === activeLesson ? 'active-container' : 'container'"
+>
+  <img
+    class="image"
+    src="{{ lesson.previewImageLink + '/lesson-' + lesson.order + '.webp' }}"
+  />
+  <div class="content-container">
+    <h4>{{ lesson.title }}</h4>
+    <div>Lesson {{ lesson.order }}</div>
+    <div>Duration: {{ lesson.duration / 60 | number : "1.0-2" }} minutes</div>
+  </div>
+</div>
+
+<div *ngIf="lesson.status === 'locked'" class="container">
+  <div class="blocker">Locked</div>
+  <img class="image" src="../../../../assets/locked-lesson.webp" />
+  <div class="content-container">
+    <h4>{{ lesson.title }}</h4>
+    <div>Lesson {{ lesson.order }}</div>
+    <div>Duration: {{ lesson.duration / 60 | number : "1.0-2" }}</div>
+  </div>
+</div>
