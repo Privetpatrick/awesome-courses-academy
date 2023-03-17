@@ -10,6 +10,7 @@
   border-radius: 10px;
 
   & .img-container {
+    position: relative;
     min-height: 240px;
     & .video {
       margin-top: 36px;
@@ -22,6 +23,16 @@
       // object-fit: contain;
       border-radius: 10px 10px 0 0;
       display: block;
+    }
+    & .no-video {
+      position: absolute;
+      z-index: 100;
+      top: 48%;
+      left: 38%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
     }
   }
 
@@ -74,6 +85,17 @@
 .container:hover {
   & .img-container {
     & img {
+      display: none;
+    }
+    & .no-video {
+      display: block;
+    }
+  }
+}
+
+.container {
+  & .img-container {
+    & .no-video {
       display: none;
     }
   }
