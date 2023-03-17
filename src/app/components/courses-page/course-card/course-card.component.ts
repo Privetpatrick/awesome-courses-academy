@@ -30,6 +30,7 @@ export class CourseCardComponent {
   @HostListener('mouseleave') mouseleave(e: Event) {
     this.mouseOver = false;
     if (!this.videoElement || this.noVideo) return;
+    this.videoElement.style.display = 'none';
     this.image.nativeElement.style.display = 'block';
     this.videoElement.pause();
     this.videoElement.src = '';
@@ -44,6 +45,7 @@ export class CourseCardComponent {
     if (this.noVideo) return;
     if (!this.course.meta.courseVideoPreview.link) return;
     this.videoElement = this.video?.nativeElement;
+    this.videoElement.style.display = 'block';
     var hls = new Hls();
     hls.loadSource(this.course.meta.courseVideoPreview.link);
     hls.attachMedia(this.videoElement);
