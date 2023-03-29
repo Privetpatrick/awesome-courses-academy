@@ -70,7 +70,7 @@ export class OneCoursePageComponent implements OnInit, OnDestroy {
       return;
     }
     this.videoElement = this.video?.nativeElement;
-    var hls = new Hls();
+    const hls = new Hls();
     hls.loadSource(this.videoURL);
     hls.attachMedia(this.videoElement);
     hls.on(Hls.Events.MANIFEST_PARSED, () => {

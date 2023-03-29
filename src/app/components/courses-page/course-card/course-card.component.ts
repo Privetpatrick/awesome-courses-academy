@@ -43,10 +43,17 @@ export class CourseCardComponent {
 
   createVideo() {
     if (this.noVideo) return;
-    if (!this.course.meta.courseVideoPreview.link) return;
+    if (
+      !this.course.meta.courseVideoPreview ||
+      !this.course.meta.courseVideoPreview.link
+    ) {
+      this.noVideo = true;
+      this.image.nativeElement.style.display = 'block';
+      return;
+    }
     this.videoElement = this.video?.nativeElement;
     this.videoElement.style.display = 'block';
-    var hls = new Hls();
+    const hls = new Hls();
     hls.loadSource(this.course.meta.courseVideoPreview.link);
     hls.attachMedia(this.videoElement);
     hls.on(Hls.Events.ERROR, (event, data) => {
